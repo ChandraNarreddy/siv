@@ -45,7 +45,7 @@ func (c *aesSiv) CTRBlockSize() int {
 func (c *aesSiv) Wrap(plaintext []byte, additionalData ...[]byte) ([]byte, error) {
 	ctrBlockSize := c.CTRBlockSize()
 	cmacBlockSize := c.CMACBlockSize()
-	if len(plaintext) > strconv.IntSize {
+	if len(plaintext) > (1 << (strconv.IntSize - 3)) {
 		return nil, ErrSivWrapUnsupportedPlaintext
 	}
 	if len(additionalData) > (cmacBlockSize*8)-2 {
@@ -66,7 +66,7 @@ func (c *aesSiv) Wrap(plaintext []byte, additionalData ...[]byte) ([]byte, error
 func (c *aesSiv) Unwrap(ciphertext []byte, additionalData ...[]byte) ([]byte, error) {
 	ctrBlockSize := c.CTRBlockSize()
 	cmacBlockSize := c.CMACBlockSize()
-	if len(ciphertext)-ctrBlockSize > strconv.IntSize {
+	if len(ciphertext)-ctrBlockSize > (1 << (strconv.IntSize - 3)) {
 		return nil, ErrSivUnWrapSizeUnsupportedCiphertext
 	}
 	if len(additionalData) > (cmacBlockSize*8)-2 {

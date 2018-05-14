@@ -2,8 +2,10 @@ package siv
 
 import (
 	"log"
+	"math/rand"
 	"reflect"
 	"testing"
+	"time"
 )
 
 var (
@@ -64,6 +66,47 @@ func TestAesSIVRfc5297A1(t *testing.T) {
 	if !(reflect.DeepEqual(sivUnwrap, rfc5297A1plaintext)) {
 		t.Errorf("SIV Unwrap failure")
 	}
+}
+
+func TestAesSIVRandom(t *testing.T) {
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	key := make([]byte, 48)
+	r.Read(key)
+
+	adLength := r.Intn(126)
+	ad := make([][]byte, adLength)
+	for i := 0; i < adLength; i++ {
+		data := make([]byte, i+40)
+		r.Read(data)
+		copy(ad[i], data)
+	}
+
+	plainBytesLength := r.Intn(1 << 26) //restricting to 64 MB max size payloads for testing
+	plainBytes := make([]byte, plainBytesLength)
+	r.Read(plainBytes)
+
+	pair, pairErr := NewAesSIVBlockPair(key)
+	if pairErr != nil {
+		log.Fatal(pairErr)
+	}
+	siv, siverr := NewSIV(pair)
+	//siv, siverr := pair.NewSIV()
+	if siverr != nil {
+		log.Fatal(siverr)
+	}
+	sivWrap, wrapErr := siv.Wrap(plainBytes, ad...)
+	if wrapErr != nil {
+		log.Fatal(wrapErr)
+	}
+
+	sivUnwrap, UnwrapErr := siv.Unwrap(sivWrap, ad...)
+	if UnwrapErr != nil {
+		log.Fatal(UnwrapErr)
+	}
+	if !(reflect.DeepEqual(sivUnwrap, plainBytes)) {
+		t.Errorf("SIV Unwrap failure")
+	}
+
 }
 
 func BenchmarkWithRfc5297A1Wrap(b *testing.B) {

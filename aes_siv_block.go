@@ -20,7 +20,7 @@ type aesSIVBlockPair struct {
 	Ctrblock  cipher.Block
 }
 
-//NewAesSIVBlockPair() function takes a 256, 384 or 512 bit key and returns an AesSIVBlockPair.
+//NewAesSIVBlockPair function takes a 256, 384 or 512 bit key and returns an AesSIVBlockPair.
 func NewAesSIVBlockPair(key []byte) (*aesSIVBlockPair, error) {
 	switch len(key) {
 	default:
