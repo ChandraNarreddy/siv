@@ -1,7 +1,7 @@
 # siv
 SIV-AES (rfc5297) implementation for Golang.
 
-SIV was proposed by Phil Rogaway and Thomas Shrimpton in 2006[SIV]https://iacr.org/archive/eurocrypt2006/40040377/40040377.pdf. Synthetic Initialization Vector (SIV) Authenticated Encryption Using the Advanced Encryption Standard (AES) was proposed as a nonce-misuse resistant Deterministic Authenticated Encryption mechanism in [rfc5297]https://tools.ietf.org/html/rfc5297.
+SIV was proposed by Phil Rogaway and Thomas Shrimpton in 2006 - [SIV](https://iacr.org/archive/eurocrypt2006/40040377/40040377.pdf). Synthetic Initialization Vector (SIV) Authenticated Encryption Using the Advanced Encryption Standard (AES) was proposed as a nonce-misuse resistant Deterministic Authenticated Encryption mechanism in [rfc5297](https://tools.ietf.org/html/rfc5297).
 
 ## Usage
 * Import siv into your source
