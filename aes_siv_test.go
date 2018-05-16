@@ -1,9 +1,9 @@
 package siv
 
 import (
+	"crypto/subtle"
 	"log"
 	"math/rand"
-	"reflect"
 	"testing"
 	"time"
 )
@@ -55,7 +55,7 @@ func TestAesSIVRfc5297A1(t *testing.T) {
 	if wrapErr != nil {
 		log.Fatal(wrapErr)
 	}
-	if !(reflect.DeepEqual(sivWrap, rfc5297A1encrypted)) {
+	if subtle.ConstantTimeCompare(sivWrap, rfc5297A1encrypted) != 1 {
 		t.Errorf("SIV Wrap failure")
 	}
 
@@ -63,7 +63,7 @@ func TestAesSIVRfc5297A1(t *testing.T) {
 	if UnwrapErr != nil {
 		log.Fatal(UnwrapErr)
 	}
-	if !(reflect.DeepEqual(sivUnwrap, rfc5297A1plaintext)) {
+	if subtle.ConstantTimeCompare(sivUnwrap, rfc5297A1plaintext) != 1 {
 		t.Errorf("SIV Unwrap failure")
 	}
 }
@@ -81,7 +81,7 @@ func TestAesSIVRandom(t *testing.T) {
 		copy(ad[i], data)
 	}
 
-	plainBytesLength := r.Intn(1 << 26) //restricting to 64 MB max size payloads for testing
+	plainBytesLength := r.Intn(1 << 25) //restricting to 32 MB max size payloads for testing
 	plainBytes := make([]byte, plainBytesLength)
 	r.Read(plainBytes)
 
@@ -103,10 +103,9 @@ func TestAesSIVRandom(t *testing.T) {
 	if UnwrapErr != nil {
 		log.Fatal(UnwrapErr)
 	}
-	if !(reflect.DeepEqual(sivUnwrap, plainBytes)) {
+	if subtle.ConstantTimeCompare(sivUnwrap, plainBytes) != 1 {
 		t.Errorf("SIV Unwrap failure")
 	}
-
 }
 
 func BenchmarkWithRfc5297A1Wrap(b *testing.B) {

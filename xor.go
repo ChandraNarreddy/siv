@@ -5,7 +5,6 @@ func xor(dst, a, b []byte) {
 	if len(b) < n {
 		n = len(b)
 	}
-	//dst = make([]byte, n)
 	for i := 0; i < n; i++ {
 		dst[i] = a[i] ^ b[i]
 	}

@@ -1,8 +1,8 @@
 package siv
 
 import (
+	"crypto/subtle"
 	"errors"
-	"reflect"
 	"strconv"
 	//https://github.com/aead/cmac/blob/master/cmac.go
 )
@@ -84,7 +84,7 @@ func (c *aesSiv) Unwrap(ciphertext []byte, additionalData ...[]byte) ([]byte, er
 	if s2verror != nil {
 		return nil, s2verror
 	}
-	if !(reflect.DeepEqual(t, v)) {
+	if subtle.ConstantTimeCompare(t, v) != 1 {
 		return nil, ErrFailSivUnwrap
 	}
 	return plaintext, nil
