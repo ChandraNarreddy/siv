@@ -134,7 +134,6 @@ func BenchmarkWithRfc5297A1Wrap(b *testing.B) {
 		log.Fatal(siverr)
 	}
 	benchmarkAesSivWrap(b, siv, rfc5297A1plaintext, rfc5297A1ad...)
-	benchmarkAesSivUnwrap(b, siv, rfc5297A1encrypted, rfc5297A1ad...)
 }
 
 func BenchmarkWithRfc5297A1UnWrap(b *testing.B) {

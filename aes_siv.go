@@ -4,7 +4,6 @@ import (
 	"crypto/subtle"
 	"errors"
 	"strconv"
-	//https://github.com/aead/cmac/blob/master/cmac.go
 )
 
 var (
