@@ -47,7 +47,6 @@ func TestAesSIVRfc5297A1(t *testing.T) {
 		log.Fatal(pairErr)
 	}
 	siv, siverr := NewSIV(pair)
-	//siv, siverr := pair.NewSIV()
 	if siverr != nil {
 		log.Fatal(siverr)
 	}
@@ -75,7 +74,6 @@ func TestAesSIVNil(t *testing.T) {
 		log.Fatal(pairErr)
 	}
 	siv, siverr := NewSIV(pair)
-	//siv, siverr := pair.NewSIV()
 	if siverr != nil {
 		log.Fatal(siverr)
 	}
@@ -111,7 +109,6 @@ func TestAesSIVRandom(t *testing.T) {
 		log.Fatal(pairErr)
 	}
 	siv, siverr := NewSIV(pair)
-	//siv, siverr := pair.NewSIV()
 	if siverr != nil {
 		log.Fatal(siverr)
 	}
@@ -133,7 +130,6 @@ func BenchmarkWithRfc5297A1Wrap(b *testing.B) {
 		log.Fatal(pairErr)
 	}
 	siv, siverr := NewSIV(pair)
-	//siv, siverr := pair.NewSIV()
 	if siverr != nil {
 		log.Fatal(siverr)
 	}
@@ -147,7 +143,6 @@ func BenchmarkWithRfc5297A1UnWrap(b *testing.B) {
 		log.Fatal(pairErr)
 	}
 	siv, siverr := NewSIV(pair)
-	//siv, siverr := pair.NewSIV()
 	if siverr != nil {
 		log.Fatal(siverr)
 	}

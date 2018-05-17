@@ -16,13 +16,13 @@ import "github.com/ChandraNarreddy/siv"
 ```
 * Create a Blockpair as -
 ```
-pair, _ := NewAesSIVBlockPair([]key)
+pair, _ := siv.NewAesSIVBlockPair([]key)
 ```
 The key size should be either 256, 384 or 512 bits in size
 
 * Instantiate SIV as -
 ```
-siv, _ := NewSIV(pair)
+siv, _ := siv.NewSIV(pair)
 ```
 * Wrap plaintext and additionalData using -
 ```
