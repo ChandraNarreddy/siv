@@ -15,6 +15,8 @@ import "github.com/ChandraNarreddy/siv"
 ```
 pair, _ := NewAesSIVBlockPair([]key)
 ```
+The key size should be either 256, 384 or 512 bits in size
+
 * Instantiate SIV as -
 ```
 siv, _ := NewSIV(pair)
