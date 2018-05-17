@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/ChandraNarreddy/siv.svg?branch=master)](https://travis-ci.org/ChandraNarreddy/siv)
+
+
 # siv
 SIV-AES (rfc5297) implementation for Golang.
 
