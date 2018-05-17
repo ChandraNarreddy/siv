@@ -25,7 +25,7 @@ plainBytes := []byte(plainText)
 additionalDataBytes := [][]byte{[]byte("first additional data"), []byte("second additional data")}
 cipherBytes, _ := siv.Wrap(plainBytes, additionalDataBytes...)
 ```
-* To Unwrap an encrypted bytes -
+* To Unwrap encrypted bytes -
 ```
 plainBytes, failure := siv.Unwrap(cipherBytes, additionalDataBytes...)
 if failure != nil {
