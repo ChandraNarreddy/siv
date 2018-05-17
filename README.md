@@ -18,7 +18,7 @@ import "github.com/ChandraNarreddy/siv"
 ```
 pair, _ := siv.NewAesSIVBlockPair([]key)
 ```
-The key size should be either 256, 384 or 512 bits in size
+The key can be 256, 384 or 512 bits in size
 
 * Instantiate SIV as -
 ```
@@ -30,7 +30,7 @@ plainBytes := []byte(plainText)
 additionalDataBytes := [][]byte{[]byte("first additional data"), []byte("second additional data")}
 cipherBytes, _ := siv.Wrap(plainBytes, additionalDataBytes...)
 ```
-* To Unwrap encrypted bytes -
+* Unwrap encrypted bytes -
 ```
 plainBytes, failure := siv.Unwrap(cipherBytes, additionalDataBytes...)
 if failure != nil {
