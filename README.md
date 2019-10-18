@@ -8,18 +8,18 @@ SIV-AES (rfc5297) implementation for Golang.
 ## Usage
 * Import siv into your source
 ```
-go get https://github.com/ChandraNarreddy/siv
+go get github.com/ChandraNarreddy/siv
 ```
 ```
 import "github.com/ChandraNarreddy/siv"
 ```
 * Create a Blockpair as -
 ```
-pair, _ := siv.NewAesSIVBlockPair([]key)
+pair, _ := siv.NewAesSIVBlockPair(key)
 ```
-The key can be 256, 384 or 512 bits in size
+where key can be 256, 384 or 512 bit sized []byte array
 
-* Instantiate SIV as -
+* Initialize SIV as -
 ```
 siv, _ := siv.NewSIV(pair)
 ```
