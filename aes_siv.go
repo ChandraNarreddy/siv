@@ -23,6 +23,8 @@ var (
 	ErrSivUnWrapSizeUnsupportedCiphertext = errors.New("Siv Unwrap error: ciphertext size is longer than supported")
 	//ErrSivUnWrapUnsupportedAdditionalData indicates that the additionalData elements supplied exceed the maximum number supported
 	ErrSivUnWrapUnsupportedAdditionalData = errors.New("Siv Unwrap error: additionalData elements more than than supported")
+	//ErrSivUnWrapShortCipherLength indicates that the cipher text is too short
+	ErrSivUnWrapShortCipherLength = errors.New("Siv Unwrap error: ciphertext is too short")
 )
 
 const (
@@ -67,6 +69,9 @@ func (c *aesSiv) Unwrap(ciphertext []byte, additionalData ...[]byte) ([]byte, er
 	cmacBlockSize := c.CMACBlockSize()
 	if len(ciphertext)-ctrBlockSize > (1 << (strconv.IntSize - 3)) {
 		return nil, ErrSivUnWrapSizeUnsupportedCiphertext
+	}
+	if len(ciphertext) < cmacBlockSize {
+		return nil, ErrSivUnWrapShortCipherLength
 	}
 	if len(additionalData) > (cmacBlockSize*8)-2 {
 		return nil, ErrSivUnWrapUnsupportedAdditionalData
