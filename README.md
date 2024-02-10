@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ChandraNarreddy/siv.svg?branch=master)](https://travis-ci.org/ChandraNarreddy/siv)      [![GoDoc](https://godoc.org/github.com/ChandraNarreddy/siv?status.svg)](https://godoc.org/github.com/ChandraNarreddy/siv)
+[![Build Status]((https://github.com/ChandraNarreddy/siv/actions/workflows/go.yml/badge.svg))](https://github.com/ChandraNarreddy/siv/actions/workflows/go.yml)      [![GoDoc](https://godoc.org/github.com/ChandraNarreddy/siv?status.svg)](https://godoc.org/github.com/ChandraNarreddy/siv)
 
 # siv
 SIV-AES (rfc5297) implementation for Golang.
